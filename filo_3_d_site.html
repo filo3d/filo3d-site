@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filô 3D - Impressão Criativa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #e3f2fd;
+      color: #222;
+      text-align: center;
+    }
+    header {
+      padding: 40px 0 10px;
+    }
+    header img {
+      width: 180px;
+    }
+    .intro {
+      font-size: 1.2rem;
+      margin: 20px auto;
+      max-width: 700px;
+    }
+    section {
+      margin: 40px auto;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+    .product {
+      margin: 30px 0;
+      border-top: 1px solid #ccc;
+      padding-top: 30px;
+    }
+    .product img {
+      width: 220px;
+      border-radius: 10px;
+    }
+    select {
+      padding: 5px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-filo.png" alt="Filô 3D">
+    <p class="intro">
+      Transformamos ideias em objetos reais com impressão 3D.<br>
+      Personalização, criatividade e tecnologia ao seu alcance.<br>
+      Faça já o seu orçamento!
+    </p>
+  </header>
+
+  <section>
+    <h2>Love Pop & Pet Pop!</h2>
+
+    <!-- Pet Pop! -->
+    <div class="product">
+      <h3>🐾 Pet Pop! (11cm) — R$ 75,00</h3>
+      <img src="love-pet.jpg" alt="Pet Pop!">
+      <br>
+      <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+        data-preference-id="2557502598-bbbb9c47-9eb9-4648-bb4f-51274632d155" data-source="button">
+      </script>
+    </div>
+
+    <!-- Love Pop Individual -->
+    <div class="product">
+      <h3>🧍 Love Pop Pessoa Individual (11cm)</h3>
+      <img src="love-pop.jpg" alt="Love Pop Individual">
+      <p>Adicione até 3 adereços personalizados (pet, criança, objeto, etc). Valor base: R$ 100,00</p>
+      <select id="individual" onchange="updateIndividual()">
+        <option value="0">0 adereços (R$ 100,00)</option>
+        <option value="1">1 adereço (R$ 140,00)</option>
+        <option value="2">2 adereços (R$ 180,00)</option>
+        <option value="3">3 adereços (R$ 220,00)</option>
+      </select>
+      <div id="individual-button"></div>
+    </div>
+
+    <!-- Love Pop Casal -->
+    <div class="product">
+      <h3>💑 Love Pop Casal (11cm)</h3>
+      <img src="love-pop.jpg" alt="Love Pop Casal">
+      <p>Adicione até 3 adereços extras. Valor base: R$ 150,00</p>
+      <select id="casal" onchange="updateCasal()">
+        <option value="0">0 adereços (R$ 150,00)</option>
+        <option value="1">1 adereço (R$ 190,00)</option>
+        <option value="2">2 adereços (R$ 230,00)</option>
+        <option value="3">3 adereços (R$ 270,00)</option>
+      </select>
+      <div id="casal-button"></div>
+    </div>
+  </section>
+
+  <script>
+    function updateIndividual() {
+      const ids = {
+        0: '2557502598-408f1f59-c05f-4050-bf9d-5c5e466da628',
+        1: '2557502598-d7a25cc8-ba40-4b38-9e83-db80281bd615',
+        2: '2557502598-3b4cbe70-36af-4d55-9cdf-cd87832e9d70',
+        3: '2557502598-85135f3e-a19e-478f-b528-634a7739cea6',
+      };
+      const val = document.getElementById('individual').value;
+      const container = document.getElementById('individual-button');
+      container.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = 'https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js';
+      script.setAttribute('data-preference-id', ids[val]);
+      script.setAttribute('data-source', 'button');
+      container.appendChild(script);
+    }
+
+    function updateCasal() {
+      const ids = {
+        0: '2557502598-032f44b8-b592-481f-952e-c33982db26ea',
+        1: '2557502598-a7682313-5a43-4692-b619-600fbafe3cce',
+        2: '2557502598-cfb44190-96d1-4527-b22e-2f0dfbd6274f',
+        3: '2557502598-1eb67e8a-21e5-4ec7-a689-5cef68b2d158',
+      };
+      const val = document.getElementById('casal').value;
+      const container = document.getElementById('casal-button');
+      container.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = 'https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js';
+      script.setAttribute('data-preference-id', ids[val]);
+      script.setAttribute('data-source', 'button');
+      container.appendChild(script);
+    }
+
+    updateIndividual();
+    updateCasal();
+  </script>
+</body>
+</html>
