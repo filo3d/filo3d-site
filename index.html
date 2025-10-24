@@ -1,48 +1,318 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filô 3D</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      overflow-x: hidden;
-    }
-  </style>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'filo-light-blue': '#E5EDEF',
-            'filo-dark-blue': '#006DC7',
-          },
-          fontFamily: {
-            spartan: ['"League Spartan"', 'sans-serif'],
-            poppins: ['"Poppins"', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filô Impressão 3D</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #e5eded;
+        }
+
+        .section {
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #pagina1 { background-color: rgb(229, 237, 237); }
+        #pagina2 { background-color: rgb(0, 109, 199); color: white; }
+        #pagina3 { background-color: rgb(229, 237, 237); }
+        #pagina4 { background-color: rgb(229, 237, 237); }
+        #pagina5 { background-image: url('https://i.imgur.com/U8nGddC.png'); background-size: cover; background-position: center; padding: 100px 20px; }
+        #pagina6 { background-color: rgb(0, 109, 199); color: white; }
+
+        h1, h2 {
+            font-family: 'League Spartan', sans-serif;
+        }
+
+        #pagina1 h1 { font-size: 37px; }
+        #pagina1 p { font-size: 24px; }
+        #pagina2 h1 { font-size: 37px; }
+        #pagina2 p { font-size: 17px; max-width: 600px; }
+        #pagina3 h1 { font-size: 40px; }
+        .pop-item h2 { font-size: 20px; }
+        .pop-item p { font-size: 12px; }
+        #pagina4 h1 { font-size: 40px; }
+        .possibility-item h2 { font-size: 18px; }
+        .possibility-item p { font-size: 14px; }
+        #pagina6 h1 { font-size: 40px; }
+        #pagina6 h2 { font-size: 20px; }
+        #pagina6 p { font-size: 14px; }
+
+        .button {
+            font-family: 'Proxima Nova', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            border: 1px solid #000;
+            background-color: transparent;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        #pagina2 .button {
+             border: 1px solid #fff;
+             color: #fff;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .text-content {
+            max-width: 500px;
+        }
+
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .pop-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .pop-item {
+            position: relative;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 300px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .dropdown a, .dropdown span {
+            color: black;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+        }
+
+        .dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .possibilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 40px;
+        }
+
+        .possibility-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .possibility-item img {
+            width: 100px;
+            height: auto;
+        }
+        
+        .contact-info {
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
+
+    <section id="pagina1" class="section">
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h1>Transformamos ideias em objetos reais com impressão 3D</h1>
+                <p>Personalização, criatividade e tecnologia ao seu alcance</p>
+                <button class="button" onclick="scrollToContact()">ORÇAMENTOS</button>
+            </div>
+            <div class="image-content">
+                <img src="https://i.imgur.com/8lyI3iG.png" alt="Produto 3D">
+            </div>
+        </div>
+        <img src="https://i.imgur.com/mz6v5Xw.png" alt="Logo Filô" style="margin-top: 30px; max-width: 150px;">
+    </section>
+
+    <section id="pagina2" class="section">
+        <div class="content-wrapper">
+            <div class="image-content">
+                <img src="https://i.imgur.com/0Kx68pO.png" alt="Casal Filô">
+            </div>
+            <div class="text-content">
+                <h1>Por que “Filô”?</h1>
+                <p>Somos Jéssica e Tiago, um casal que vivencia arte em nossas profissões. Dessa união, nasceu nossa empresa de impressão 3D, onde visamos criar e facilitar a vida do individuo com técnica, carinho e atenção a cada detalhe. São filamentos dando vida à sua ideia, e por isso, somos a Filô!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pagina3" class="section">
+        <h1>Linha POP!</h1>
+        <div class="pop-container">
+            <div class="pop-item">
+                <img src="https://i.imgur.com/0FkMi7c.png" alt="Pet Pop">
+                <h2>Pet Pop</h2>
+                <p>Tenha o seu melhor amigo sempre por perto</p>
+                <button class="button" onclick="toggleDropdown('pet-pop')">COMPRE AQUI</button>
+                <div id="pet-pop" class="dropdown">
+                    <span>Pet Pop R$100,00 à vista via Pix 61524444000110</span>
+                    <a href="https://mpago.la/2gKdo1C" target="_blank">Pet Pop em até 12X com juros</a>
+                </div>
+            </div>
+            <div class="pop-item">
+                <img src="https://i.imgur.com/xPrCYhX.png" alt="Love Pop Individual">
+                <h2>Love Pop (Individual)</h2>
+                <p>Uma miniatura, infinitas lembranças</p>
+                <button class="button" onclick="toggleDropdown('love-pop-individual')">COMPRE AQUI</button>
+                <div id="love-pop-individual" class="dropdown">
+                    <span>Love Pop Individual R$120,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Individual com 01 adereço R$160,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Individual com 02 adereços R$200,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Individual com 03 adereços R$240,00 à vista via Pix 61524444000110</span>
+                    <a href="https://mpago.la/1KeWCHH" target="_blank">Love Pop Individual em até 12X com juros</a>
+                    <a href="https://mpago.la/2Jn9gPr" target="_blank">Love Pop Individual com 01 adereço em até 12X com juros</a>
+                    <a href="https://mpago.la/2SE87PE" target="_blank">Love Pop Individual com 02 adereços em até 12X com juros</a>
+                    <a href="https://mpago.la/1v727Tx" target="_blank">Love Pop Individual com 03 adereços em até 12X com juros</a>
+                </div>
+            </div>
+            <div class="pop-item">
+                <img src="https://i.imgur.com/iCZNdOt.png" alt="Love Pop Casal">
+                <h2>Love Pop (Casal)</h2>
+                <p>Surpreenda quem você ama</p>
+                <button class="button" onclick="toggleDropdown('love-pop-casal')">COMPRE AQUI</button>
+                <div id="love-pop-casal" class="dropdown">
+                    <span>Love Pop Casal R$180,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Casal com 01 adereço R$220,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Casal com 02 adereços R$260,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Casal com 03 adereços R$300,00 à vista via Pix 61524444000110</span>
+                    <a href="https://mpago.la/33Yozgx" target="_blank">Love Pop Casal em até 12X com juros</a>
+                    <a href="https://mpago.la/2s79L8v" target="_blank">Love Pop Casal com 01 adereço em até 12X com juros</a>
+                    <a href="https://mpago.la/2t6JB67" target="_blank">Love Pop Casal com 02 adereços em até 12X com juros</a>
+                    <a href="https://mpago.la/1DYUB6U" target="_blank">Love Pop Casal com 03 adereços em até 12X com juros</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pagina4" class="section">
+        <h1>Mil e uma possibilidades</h1>
+        <div class="possibilities-grid">
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/BbfUuwt.png" alt="Geek">
+                <div>
+                    <h2>Geek</h2>
+                    <p>Do seu mundo favorito direto pra sua estante.</p>
+                </div>
+            </div>
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/Xt6HmBs.png" alt="Divulga +">
+                 <div>
+                    <h2>Divulga +</h2>
+                    <p>Itens personalizados que ajudam sua marca ir mais longe.</p>
+                </div>
+            </div>
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/kcArYWz.png" alt="Arquitetura">
+                <div>
+                    <h2>Arquitetura</h2>
+                    <p>Maquetes 3D físicas para encantar seus clientes.</p>
+                </div>
+            </div>
+             <div class="possibility-item">
+                <img src="https://i.imgur.com/sksKGxz.png" alt="Utilitários">
+                <div>
+                    <h2>Utilitários</h2>
+                    <p>Soluções práticas e inteligentes para facilitar o seu dia-a-dia.</p>
+                </div>
+            </div>
+             <div class="possibility-item">
+                 <img src="https://i.imgur.com/ejo8fSX.png" alt="Protótipos">
+                <div>
+                    <h2>Protótipos</h2>
+                    <p>Tem uma ideia e gostaria de tirá-la do papel? Manda pra gente!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pagina5" class="section">
+         <div class="content-wrapper">
+             <img src="https://i.imgur.com/8WaYOjp.png" alt="Comentário 1" style="max-width: 45%;">
+             <img src="https://i.imgur.com/1hYpMyZ.png" alt="Comentário 2" style="max-width: 45%;">
+         </div>
+    </section>
+
+    <section id="pagina6" class="section">
+        <div class="content-wrapper">
+            <div class="image-content">
+                 <img src="https://i.imgur.com/EaQ6pM5.png" alt="Cachorro Filô">
+            </div>
+            <div class="text-content">
+                <h1>Entre em contato</h1>
+                <div class="contact-info">
+                    <h2>Instagram</h2>
+                    <p>www.instagram.com/_filo3d</p>
+                    <h2>E-mail</h2>
+                    <p>filo3d.contato@gmail.com</p>
+                    <h2>WhatsApp</h2>
+                    <p>+55 24 98116-0108</p>
+                    <p>+55 24 99921-6805</p>
+                </div>
+            </div>
+             <div class="image-content">
+                <img src="https://i.imgur.com/HsJFZnR.png" alt="Logo Filô Contato">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToContact() {
+            document.getElementById('pagina6').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleDropdown(id) {
+            var dropdown = document.getElementById(id);
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+        
+        window.onclick = function(event) {
+          if (!event.target.matches('.button')) {
+            var dropdowns = document.getElementsByClassName("dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+              }
+            }
+          }
+        }
+    </script>
+
 </body>
 </html>
