@@ -26,6 +26,7 @@
             min-height: 100vh;
             box-sizing: border-box;
             text-align: center;
+            width: 100%;
         }
 
         #pagina1 { background-color: rgb(229, 237, 237); }
@@ -46,16 +47,17 @@
         }
 
         /* Página 1 */
+        #pagina1 .header-container { width: 100%; text-align: center; }
         #pagina1 .header-logo { margin-bottom: 40px; max-width: 150px; }
         #pagina1 .content-wrapper { text-align: left; }
         #pagina1 .text-content { max-width: 450px; }
-        #pagina1 .image-content { margin-left: 60px; } /* Aumentei o afastamento */
+        #pagina1 .image-content { margin-left: 60px; }
         #pagina1 h1 { font-size: 37px; line-height: 1.2; }
         #pagina1 p { font-size: 24px; }
 
         /* Página 2 */
-        #pagina2 .image-content img { max-width: 400px; } /* Aumentei um pouco */
-        #pagina2 .text-content { max-width: 500px; }
+        #pagina2 .image-content img { max-width: 400px; }
+        #pagina2 .text-content { max-width: 500px; text-align: left; }
         #pagina2 h1 { font-size: 37px; }
         #pagina2 p { font-size: 18px; line-height: 1.6; }
 
@@ -66,9 +68,9 @@
 
         /* Página 4 */
         #pagina4 h1 { font-size: 40px; margin-bottom: 50px; }
-        .possibility-item img { width: 130px; height: auto; } /* Aumentei um pouco */
-        .possibility-item h2 { font-size: 22px; } /* Aumentei um pouco */
-        .possibility-item p { font-size: 17px; } /* Aumentei um pouco */
+        .possibility-item img { width: 130px; height: auto; }
+        .possibility-item h2 { font-size: 22px; }
+        .possibility-item p { font-size: 17px; }
 
         /* Página 5 */
         #pagina5 .testimonials-wrapper {
@@ -86,7 +88,7 @@
         /* Página 6 */
         #pagina6 .contact-logo { max-width: 200px; margin-bottom: 30px; }
         #pagina6 .content-wrapper { align-items: center; }
-        #pagina6 .image-content img { max-width: 320px; } /* Aumentei um pouco */
+        #pagina6 .image-content img { max-width: 320px; }
         #pagina6 .text-content { max-width: 500px; margin-left: 40px; text-align: left; }
         #pagina6 h1 { font-size: 40px; }
         #pagina6 h2 { font-size: 20px; margin-bottom: 5px; }
@@ -154,6 +156,8 @@
             padding: 10px;
             text-align: left;
             border-radius: 5px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .dropdown a, .dropdown span {
@@ -204,22 +208,32 @@
                 padding: 50px 15px;
                 min-height: auto;
             }
+            h1 { font-size: 32px !important; }
+
             .content-wrapper {
                 flex-direction: column;
             }
-            #pagina1 .content-wrapper {
+            #pagina1 .content-wrapper,
+            #pagina2 .text-content,
+            #pagina6 .text-content {
                 text-align: center;
             }
             #pagina1 .image-content {
                 margin-left: 0;
                 margin-top: 30px;
             }
-            #pagina2 .text-content, #pagina6 .text-content {
-                text-align: center;
-                margin-left: 0;
+            #pagina2 .content-wrapper {
+                flex-direction: column-reverse;
             }
+             #pagina2 .text-content {
+                margin-top: 30px;
+            }
+
             #pagina6 .content-wrapper {
-                 flex-direction: column-reverse; /* Coloca o texto abaixo da imagem */
+                 flex-direction: column-reverse;
+            }
+            #pagina6 .text-content {
+                 margin-left: 0;
             }
 
             /* Correção para o fundo da página 5 no celular */
@@ -229,13 +243,18 @@
             #pagina5 .testimonials-wrapper {
                 flex-direction: column;
             }
+            .dropdown {
+                min-width: 280px;
+            }
         }
     </style>
 </head>
 <body>
 
     <section id="pagina1" class="section">
-        <img src="https://i.imgur.com/mz6v5Xw.png" alt="Logo Filô" class="header-logo">
+        <div class="header-container">
+            <img src="https://i.imgur.com/mz6v5Xw.png" alt="Logo Filô" class="header-logo">
+        </div>
         <div class="content-wrapper">
             <div class="text-content">
                 <h1>Transformamos ideias em objetos reais com impressão 3D</h1>
