@@ -25,6 +25,7 @@
             justify-content: center;
             min-height: 100vh;
             box-sizing: border-box;
+            text-align: center;
         }
 
         #pagina1 { background-color: rgb(229, 237, 237); }
@@ -48,12 +49,12 @@
         #pagina1 .header-logo { margin-bottom: 40px; max-width: 150px; }
         #pagina1 .content-wrapper { text-align: left; }
         #pagina1 .text-content { max-width: 450px; }
-        #pagina1 .image-content { margin-left: 50px; }
+        #pagina1 .image-content { margin-left: 60px; } /* Aumentei o afastamento */
         #pagina1 h1 { font-size: 37px; line-height: 1.2; }
         #pagina1 p { font-size: 24px; }
 
         /* Página 2 */
-        #pagina2 .image-content img { max-width: 350px; }
+        #pagina2 .image-content img { max-width: 400px; } /* Aumentei um pouco */
         #pagina2 .text-content { max-width: 500px; }
         #pagina2 h1 { font-size: 37px; }
         #pagina2 p { font-size: 18px; line-height: 1.6; }
@@ -65,9 +66,9 @@
 
         /* Página 4 */
         #pagina4 h1 { font-size: 40px; margin-bottom: 50px; }
-        .possibility-item img { width: 120px; height: auto; }
-        .possibility-item h2 { font-size: 20px; }
-        .possibility-item p { font-size: 16px; }
+        .possibility-item img { width: 130px; height: auto; } /* Aumentei um pouco */
+        .possibility-item h2 { font-size: 22px; } /* Aumentei um pouco */
+        .possibility-item p { font-size: 17px; } /* Aumentei um pouco */
 
         /* Página 5 */
         #pagina5 .testimonials-wrapper {
@@ -85,7 +86,7 @@
         /* Página 6 */
         #pagina6 .contact-logo { max-width: 200px; margin-bottom: 30px; }
         #pagina6 .content-wrapper { align-items: center; }
-        #pagina6 .image-content img { max-width: 280px; }
+        #pagina6 .image-content img { max-width: 320px; } /* Aumentei um pouco */
         #pagina6 .text-content { max-width: 500px; margin-left: 40px; text-align: left; }
         #pagina6 h1 { font-size: 40px; }
         #pagina6 h2 { font-size: 20px; margin-bottom: 5px; }
@@ -140,7 +141,6 @@
 
         .pop-item {
             position: relative;
-            text-align: center;
         }
 
         .dropdown {
@@ -196,6 +196,39 @@
         
         .contact-info {
             margin-top: 30px;
+        }
+        
+        /* === MEDIA QUERIES PARA RESPONSIVIDADE === */
+        @media (max-width: 768px) {
+            .section {
+                padding: 50px 15px;
+                min-height: auto;
+            }
+            .content-wrapper {
+                flex-direction: column;
+            }
+            #pagina1 .content-wrapper {
+                text-align: center;
+            }
+            #pagina1 .image-content {
+                margin-left: 0;
+                margin-top: 30px;
+            }
+            #pagina2 .text-content, #pagina6 .text-content {
+                text-align: center;
+                margin-left: 0;
+            }
+            #pagina6 .content-wrapper {
+                 flex-direction: column-reverse; /* Coloca o texto abaixo da imagem */
+            }
+
+            /* Correção para o fundo da página 5 no celular */
+            #pagina5 {
+                background-attachment: scroll;
+            }
+            #pagina5 .testimonials-wrapper {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -355,24 +388,21 @@
         }
 
         function toggleDropdown(id) {
-            // Fecha todos os dropdowns abertos
-            var dropdowns = document.getElementsByClassName("dropdown");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.id !== id) {
-                    openDropdown.style.display = "none";
+            var allDropdowns = document.getElementsByClassName("dropdown");
+            for (var i = 0; i < allDropdowns.length; i++) {
+                if (allDropdowns[i].id !== id) {
+                    allDropdowns[i].style.display = "none";
                 }
             }
-            // Abre ou fecha o dropdown clicado
-            var dropdown = document.getElementById(id);
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
+            
+            var targetDropdown = document.getElementById(id);
+            if (targetDropdown.style.display === "block") {
+                targetDropdown.style.display = "none";
             } else {
-                dropdown.style.display = "block";
+                targetDropdown.style.display = "block";
             }
         }
         
-        // Fecha o dropdown se clicar fora dele
         window.onclick = function(event) {
           if (!event.target.matches('.button')) {
             var dropdowns = document.getElementsByClassName("dropdown");
