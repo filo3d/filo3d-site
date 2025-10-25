@@ -7,26 +7,27 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Poppins:wght@400;600&family=Proxima+Nova&display=swap');
 
-        /* === CORREÇÕES GLOBAIS E DEFINITIVAS === */
-        html {
+        /* === RESET GLOBAL E CORREÇÃO DEFINITIVA DE OVERFLOW === */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden; /* Impede a barra de rolagem horizontal */
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
         *, *:before, *:after {
             box-sizing: inherit;
         }
+        h1, h2, p {
+            word-wrap: break-word; /* Garante que palavras longas não quebrem o layout */
+        }
+        /* ======================================================= */
+
         body {
-            margin: 0;
             font-family: 'Poppins', sans-serif;
             background-color: #e5eded;
-            overflow-x: hidden; /* Failsafe para impedir a barra de rolagem horizontal */
         }
-        /* Garante que textos longos não quebrem o layout */
-        h1, h2, h3, p {
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-        }
-        /* ========================================= */
 
         .section {
             padding: 60px 20px;
@@ -61,12 +62,14 @@
         #pagina1 .header-logo { margin-bottom: 40px; max-width: 150px; }
         #pagina1 .content-wrapper { text-align: left; }
         #pagina1 .text-content { max-width: 450px; }
-        #pagina1 .image-content { margin-left: 60px; }
+        #pagina1 .image-content { margin-left: 60px; max-width: 500px; }
+        #pagina1 .image-content img { max-width: 100%; height: auto; }
         #pagina1 h1 { font-size: 37px; line-height: 1.2; }
         #pagina1 p { font-size: 24px; }
 
         /* Página 2 */
-        #pagina2 .image-content img { max-width: 400px; }
+        #pagina2 .image-content { max-width: 400px; }
+        #pagina2 .image-content img { max-width: 100%; height: auto; }
         #pagina2 .text-content { max-width: 500px; text-align: left; }
         #pagina2 h1 { font-size: 37px; }
         #pagina2 p { font-size: 18px; line-height: 1.6; }
@@ -83,14 +86,7 @@
         .possibility-item p { font-size: 17px; }
 
         /* Página 5 */
-        #pagina5 .testimonials-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            max-width: 1100px;
-        }
+        #pagina5 .testimonials-wrapper { display: flex; align-items: center; justify-content: center; gap: 20px; width: 100%; max-width: 1100px; }
         #pagina5 .left-testimonial { flex: 1; }
         #pagina5 .right-testimonials { flex: 1; display: flex; flex-direction: column; gap: 20px; }
         #pagina5 img { max-width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
@@ -98,7 +94,8 @@
         /* Página 6 */
         #pagina6 .contact-logo { max-width: 200px; margin-bottom: 30px; }
         #pagina6 .content-wrapper { align-items: center; }
-        #pagina6 .image-content img { max-width: 320px; }
+        #pagina6 .image-content { max-width: 320px; }
+        #pagina6 .image-content img { max-width: 100%; height: auto; }
         #pagina6 .text-content { max-width: 500px; margin-left: 40px; text-align: left; }
         #pagina6 h1 { font-size: 40px; }
         #pagina6 h2 { font-size: 20px; margin-bottom: 5px; }
@@ -106,111 +103,26 @@
         #pagina6 a { color: white; text-decoration: none; }
         #pagina6 a:hover { text-decoration: underline; }
 
-        .button {
-            font-family: 'Proxima Nova', sans-serif;
-            font-weight: bold;
-            font-size: 12px;
-            text-transform: uppercase;
-            padding: 12px 25px;
-            border: 2px solid #000;
-            background-color: transparent;
-            cursor: pointer;
-            margin-top: 20px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #000;
-            color: #fff;
-        }
+        .button { font-family: 'Proxima Nova', sans-serif; font-weight: bold; font-size: 12px; text-transform: uppercase; padding: 12px 25px; border: 2px solid #000; background-color: transparent; cursor: pointer; margin-top: 20px; letter-spacing: 1px; transition: all 0.3s ease; }
+        .button:hover { background-color: #000; color: #fff; }
         
-        #pagina2 .button, #pagina6 .button {
-             border-color: #fff;
-             color: #fff;
-        }
-        #pagina2 .button:hover, #pagina6 .button:hover {
-            background-color: #fff;
-            color: #006dc7;
-        }
+        #pagina2 .button, #pagina6 .button { border-color: #fff; color: #fff; }
+        #pagina2 .button:hover, #pagina6 .button:hover { background-color: #fff; color: #006dc7; }
 
-        .content-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            width: 100%;
-            max-width: 1100px;
-        }
+        .content-wrapper { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; width: 100%; max-width: 1100px; }
+        .pop-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .pop-item { position: relative; }
 
-        .pop-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .pop-item {
-            position: relative;
-        }
-
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 320px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 10;
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            border-radius: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .dropdown a, .dropdown span {
-            font-family: 'Poppins', sans-serif;
-            color: black;
-            padding: 10px 15px;
-            text-decoration: none;
-            display: block;
-            font-size: 13px;
-        }
-        .dropdown span {
-            background-color: #f0f0f0;
-            border-radius: 3px;
-            margin-bottom: 5px;
-        }
-
-        .dropdown a {
-            font-weight: 600;
-            color: #006dc7;
-        }
-
-        .dropdown a:hover {
-            background-color: #e9e9e9;
-        }
+        .dropdown { display: none; position: absolute; background-color: #f9f9f9; min-width: 320px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 10; border: 1px solid #ddd; padding: 10px; text-align: left; border-radius: 5px; left: 50%; transform: translateX(-50%); }
+        .dropdown a, .dropdown span { font-family: 'Poppins', sans-serif; color: black; padding: 10px 15px; text-decoration: none; display: block; font-size: 13px; }
+        .dropdown span { background-color: #f0f0f0; border-radius: 3px; margin-bottom: 5px; }
+        .dropdown a { font-weight: 600; color: #006dc7; }
+        .dropdown a:hover { background-color: #e9e9e9; }
         
-        .possibilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .possibility-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            text-align: left;
-        }
+        .possibilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; width: 100%; max-width: 1200px; }
+        .possibility-item { display: flex; align-items: center; gap: 20px; text-align: left; }
         
-        .contact-info {
-            margin-top: 30px;
-        }
+        .contact-info { margin-top: 30px; }
         
         /* === MEDIA QUERIES PARA RESPONSIVIDADE === */
         @media (max-width: 768px) {
@@ -221,47 +133,31 @@
             h1 { font-size: 32px !important; }
 
             .content-wrapper {
-                flex-direction: column;
+                flex-direction: column !important;
             }
 
-            /* === CORREÇÃO ESPECÍFICA PARA PÁGINAS 1 E 2 === */
-            #pagina1 .content-wrapper,
-            #pagina1 .text-content,
-            #pagina2 .text-content {
-                text-align: center; /* Força o alinhamento central */
+            /* CORREÇÃO PARA PÁGINAS 1 E 2 NO CELULAR */
+            #pagina1 .content-wrapper, #pagina2 .content-wrapper {
+                text-align: center;
             }
-            #pagina1 .image-content,
-            #pagina2 .image-content {
-                margin-left: 0; /* Reseta a margem do desktop */
+            #pagina1 .text-content, #pagina2 .text-content {
+                text-align: center;
+                max-width: 100%; /* Garante que não ultrapasse a tela */
             }
-            #pagina1 .image-content {
-                margin-top: 30px;
+            #pagina1 .image-content, #pagina2 .image-content {
+                margin: 30px 0 0 0; /* Zera margens horizontais e adiciona margem superior */
+                max-width: 100%;
             }
             #pagina2 .content-wrapper {
-                flex-direction: column-reverse; /* Mantém a imagem em cima */
+                flex-direction: column-reverse !important;
             }
-            #pagina2 .text-content {
-                margin-top: 30px;
-            }
-            /* =============================================== */
+            /* ========================================= */
 
-            #pagina6 .content-wrapper {
-                 flex-direction: column-reverse;
-            }
-            #pagina6 .text-content {
-                 margin-left: 0;
-                 text-align: center;
-            }
-
-            #pagina5 {
-                background-attachment: scroll;
-            }
-            #pagina5 .testimonials-wrapper {
-                flex-direction: column;
-            }
-            .dropdown {
-                min-width: 280px;
-            }
+            #pagina6 .content-wrapper { flex-direction: column-reverse !important; }
+            #pagina6 .text-content { margin-left: 0; text-align: center; }
+            #pagina5 { background-attachment: scroll; }
+            #pagina5 .testimonials-wrapper { flex-direction: column; }
+            .dropdown { min-width: 280px; }
         }
     </style>
 </head>
@@ -345,110 +241,50 @@
     <section id="pagina4" class="section">
         <h1>Mil e uma possibilidades</h1>
         <div class="possibilities-grid">
-            <div class="possibility-item">
-                <img src="https://i.imgur.com/BbfUuwt.png" alt="Geek">
-                <div>
-                    <h2>Geek</h2>
-                    <p>Do seu mundo favorito direto pra sua estante.</p>
-                </div>
-            </div>
-            <div class="possibility-item">
-                <img src="https://i.imgur.com/Xt6HmBs.png" alt="Divulga +">
-                <div>
-                    <h2>Divulga +</h2>
-                    <p>Itens personalizados que ajudam sua marca ir mais longe.</p>
-                </div>
-            </div>
-            <div class="possibility-item">
-                <img src="https://i.imgur.com/kcArYWz.png" alt="Arquitetura">
-                <div>
-                    <h2>Arquitetura</h2>
-                    <p>Maquetes 3D físicas para encantar seus clientes.</p>
-                </div>
-            </div>
-            <div class="possibility-item">
-                <img src="https://i.imgur.com/sksKGxz.png" alt="Utilitários">
-                <div>
-                    <h2>Utilitários</h2>
-                    <p>Soluções práticas e inteligentes para facilitar o seu dia-a-dia.</p>
-                </div>
-            </div>
-            <div class="possibility-item">
-                <img src="https://i.imgur.com/ejo8fSX.png" alt="Protótipos">
-                <div>
-                    <h2>Protótipos</h2>
-                    <p>Tem uma ideia e gostaria de tirá-la do papel? Manda pra gente!</p>
-                </div>
-            </div>
+            <div class="possibility-item"> <img src="https://i.imgur.com/BbfUuwt.png" alt="Geek"> <div> <h2>Geek</h2> <p>Do seu mundo favorito direto pra sua estante.</p> </div> </div>
+            <div class="possibility-item"> <img src="https://i.imgur.com/Xt6HmBs.png" alt="Divulga +"> <div> <h2>Divulga +</h2> <p>Itens personalizados que ajudam sua marca ir mais longe.</p> </div> </div>
+            <div class="possibility-item"> <img src="https://i.imgur.com/kcArYWz.png" alt="Arquitetura"> <div> <h2>Arquitetura</h2> <p>Maquetes 3D físicas para encantar seus clientes.</p> </div> </div>
+            <div class="possibility-item"> <img src="https://i.imgur.com/sksKGxz.png" alt="Utilitários"> <div> <h2>Utilitários</h2> <p>Soluções práticas e inteligentes para facilitar o seu dia-a-dia.</p> </div> </div>
+            <div class="possibility-item"> <img src="https://i.imgur.com/ejo8fSX.png" alt="Protótipos"> <div> <h2>Protótipos</h2> <p>Tem uma ideia e gostaria de tirá-la do papel? Manda pra gente!</p> </div> </div>
         </div>
     </section>
     
     <section id="pagina5" class="section">
         <div class="testimonials-wrapper">
-            <div class="left-testimonial">
-                <img src="https://i.imgur.com/8WaYOjp.png" alt="Comentário 1">
-            </div>
-            <div class="right-testimonials">
-                <img src="https://i.imgur.com/1hYpMyZ.png" alt="Comentário 2">
-                <img src="https://i.imgur.com/Qg1HkyJ.png" alt="Comentário 3">
-            </div>
+            <div class="left-testimonial"> <img src="https://i.imgur.com/8WaYOjp.png" alt="Comentário 1"> </div>
+            <div class="right-testimonials"> <img src="https://i.imgur.com/1hYpMyZ.png" alt="Comentário 2"> <img src="https://i.imgur.com/Qg1HkyJ.png" alt="Comentário 3"> </div>
         </div>
     </section>
 
     <section id="pagina6" class="section">
         <div class="content-wrapper">
-            <div class="image-content">
-                <img src="https://i.imgur.com/EaQ6pM5.png" alt="Cachorro Filô">
-            </div>
+            <div class="image-content"> <img src="https://i.imgur.com/EaQ6pM5.png" alt="Cachorro Filô"> </div>
             <div class="text-content">
                 <img src="https://i.imgur.com/HsJFZnR.png" alt="Logo Filô Contato" class="contact-logo">
                 <div id="contact-details" class="contact-info">
                     <h1>Entre em contato</h1>
-                    <h2>Instagram</h2>
-                    <p><a href="http://www.instagram.com/_filo3d" target="_blank">www.instagram.com/_filo3d</a></p>
-                    <h2>E-mail</h2>
-                    <p><a href="mailto:filo3d.contato@gmail.com">filo3d.contato@gmail.com</a></p>
-                    <h2>WhatsApp</h2>
-                    <p><a href="https://wa.me/5524981160108" target="_blank">+55 24 98116-0108</a></p>
-                    <p><a href="https://wa.me/5524999216805" target="_blank">+55 24 99921-6805</a></p>
+                    <h2>Instagram</h2> <p><a href="http://www.instagram.com/_filo3d" target="_blank">www.instagram.com/_filo3d</a></p>
+                    <h2>E-mail</h2> <p><a href="mailto:filo3d.contato@gmail.com">filo3d.contato@gmail.com</a></p>
+                    <h2>WhatsApp</h2> <p><a href="https://wa.me/5524981160108" target="_blank">+55 24 98116-0108</a></p> <p><a href="https://wa.me/5524999216805" target="_blank">+55 24 99921-6805</a></p>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        function scrollToContact() {
-            document.getElementById('contact-details').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
+        function scrollToContact() { document.getElementById('contact-details').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
         function toggleDropdown(id) {
             var allDropdowns = document.getElementsByClassName("dropdown");
-            for (var i = 0; i < allDropdowns.length; i++) {
-                if (allDropdowns[i].id !== id) {
-                    allDropdowns[i].style.display = "none";
-                }
-            }
-            
+            for (var i = 0; i < allDropdowns.length; i++) { if (allDropdowns[i].id !== id) { allDropdowns[i].style.display = "none"; } }
             var targetDropdown = document.getElementById(id);
-            if (targetDropdown.style.display === "block") {
-                targetDropdown.style.display = "none";
-            } else {
-                targetDropdown.style.display = "block";
-            }
+            if (targetDropdown.style.display === "block") { targetDropdown.style.display = "none"; } else { targetDropdown.style.display = "block"; }
         }
-        
         window.onclick = function(event) {
           if (!event.target.matches('.button')) {
             var dropdowns = document.getElementsByClassName("dropdown");
-            for (var i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.style.display === "block") {
-                openDropdown.style.display = "none";
-              }
-            }
+            for (var i = 0; i < dropdowns.length; i++) { var openDropdown = dropdowns[i]; if (openDropdown.style.display === "block") { openDropdown.style.display = "none"; } }
           }
         }
     </script>
-
 </body>
 </html>
