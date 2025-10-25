@@ -19,10 +19,12 @@
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background-color: #e5eded;
+            overflow-x: hidden; /* Failsafe para impedir a barra de rolagem horizontal */
         }
-        .site-wrapper {
-            width: 100%;
-            overflow-x: hidden; /* Regra principal que impede a borda lateral */
+        /* Garante que textos longos não quebrem o layout */
+        h1, h2, h3, p {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         /* ========================================= */
 
@@ -221,27 +223,34 @@
             .content-wrapper {
                 flex-direction: column;
             }
+
+            /* === CORREÇÃO ESPECÍFICA PARA PÁGINAS 1 E 2 === */
             #pagina1 .content-wrapper,
-            #pagina2 .text-content,
-            #pagina6 .text-content {
-                text-align: center;
+            #pagina1 .text-content,
+            #pagina2 .text-content {
+                text-align: center; /* Força o alinhamento central */
+            }
+            #pagina1 .image-content,
+            #pagina2 .image-content {
+                margin-left: 0; /* Reseta a margem do desktop */
             }
             #pagina1 .image-content {
-                margin-left: 0;
                 margin-top: 30px;
             }
             #pagina2 .content-wrapper {
-                flex-direction: column-reverse;
+                flex-direction: column-reverse; /* Mantém a imagem em cima */
             }
-             #pagina2 .text-content {
+            #pagina2 .text-content {
                 margin-top: 30px;
             }
+            /* =============================================== */
 
             #pagina6 .content-wrapper {
                  flex-direction: column-reverse;
             }
             #pagina6 .text-content {
                  margin-left: 0;
+                 text-align: center;
             }
 
             #pagina5 {
@@ -257,160 +266,155 @@
     </style>
 </head>
 <body>
-
-    <div class="site-wrapper">
-
-        <section id="pagina1" class="section">
-            <div class="header-container">
-                <img src="https://i.imgur.com/mz6v5Xw.png" alt="Logo Filô" class="header-logo">
+    <section id="pagina1" class="section">
+        <div class="header-container">
+            <img src="https://i.imgur.com/mz6v5Xw.png" alt="Logo Filô" class="header-logo">
+        </div>
+        <div class="content-wrapper">
+            <div class="text-content">
+                <h1>Transformamos ideias em objetos reais com impressão 3D</h1>
+                <p>Personalização, criatividade e tecnologia ao seu alcance</p>
+                <button class="button" onclick="scrollToContact()">ORÇAMENTOS</button>
             </div>
-            <div class="content-wrapper">
-                <div class="text-content">
-                    <h1>Transformamos ideias em objetos reais com impressão 3D</h1>
-                    <p>Personalização, criatividade e tecnologia ao seu alcance</p>
-                    <button class="button" onclick="scrollToContact()">ORÇAMENTOS</button>
-                </div>
-                <div class="image-content">
-                    <img src="https://i.imgur.com/8lyI3iG.png" alt="Produto 3D">
-                </div>
+            <div class="image-content">
+                <img src="https://i.imgur.com/8lyI3iG.png" alt="Produto 3D">
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="pagina2" class="section">
-            <div class="content-wrapper">
-                <div class="image-content">
-                    <img src="https://i.imgur.com/0Kx68pO.png" alt="Casal Filô">
-                </div>
-                <div class="text-content">
-                    <h1>Por que “Filô”?</h1>
-                    <p>Somos Jéssica e Tiago, um casal que vivencia arte em nossas profissões. Dessa união, nasceu nossa empresa de impressão 3D, onde visamos criar e facilitar a vida do individuo com técnica, carinho e atenção a cada detalhe. São filamentos dando vida à sua ideia, e por isso, somos a Filô!</p>
-                </div>
+    <section id="pagina2" class="section">
+        <div class="content-wrapper">
+            <div class="image-content">
+                <img src="https://i.imgur.com/0Kx68pO.png" alt="Casal Filô">
             </div>
-        </section>
+            <div class="text-content">
+                <h1>Por que “Filô”?</h1>
+                <p>Somos Jéssica e Tiago, um casal que vivencia arte em nossas profissões. Dessa união, nasceu nossa empresa de impressão 3D, onde visamos criar e facilitar a vida do individuo com técnica, carinho e atenção a cada detalhe. São filamentos dando vida à sua ideia, e por isso, somos a Filô!</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="pagina3" class="section">
-            <h1>Linha POP!</h1>
-            <div class="pop-container">
-                <div class="pop-item">
-                    <img src="https://i.imgur.com/0FkMi7c.png" alt="Pet Pop">
-                    <h2>Pet Pop</h2>
-                    <p>Tenha o seu melhor amigo sempre por perto</p>
-                    <button class="button" onclick="toggleDropdown('pet-pop')">COMPRE AQUI</button>
-                    <div id="pet-pop" class="dropdown">
-                        <span>Pet Pop R$100,00 à vista via Pix 61524444000110</span>
-                        <a href="https://mpago.la/2gKdo1C" target="_blank">Pet Pop em até 12X com juros</a>
-                    </div>
-                </div>
-                <div class="pop-item">
-                    <img src="https://i.imgur.com/xPrCYhX.png" alt="Love Pop Individual">
-                    <h2>Love Pop (Individual)</h2>
-                    <p>Uma miniatura, infinitas lembranças</p>
-                    <button class="button" onclick="toggleDropdown('love-pop-individual')">COMPRE AQUI</button>
-                    <div id="love-pop-individual" class="dropdown">
-                        <span>Love Pop Individual R$120,00 à vista via Pix 61524444000110</span>
-                        <span>Love Pop Individual com 01 adereço R$160,00 à vista via Pix 61524444000110</span>
-                        <span>Love Pop Individual com 02 adereços R$200,00 à vista via Pix 61524444000110</span>
-                        <span>Love Pop Individual com 03 adereços R$240,00 à vista via Pix 61524444000110</span>
-                        <a href="https://mpago.la/1KeWCHH" target="_blank">Love Pop Individual em até 12X com juros</a>
-                        <a href="https://mpago.la/2Jn9gPr" target="_blank">Love Pop Individual com 01 adereço em até 12X com juros</a>
-                        <a href="https://mpago.la/2SE87PE" target="_blank">Love Pop Individual com 02 adereços em até 12X com juros</a>
-                        <a href="https://mpago.la/1v727Tx" target="_blank">Love Pop Individual com 03 adereços em até 12X com juros</a>
-                    </div>
-                </div>
-                <div class="pop-item">
-                    <img src="https://i.imgur.com/iCZNdOt.png" alt="Love Pop Casal">
-                    <h2>Love Pop (Casal)</h2>
-                    <p>Surpreenda quem você ama</p>
-                    <button class="button" onclick="toggleDropdown('love-pop-casal')">COMPRE AQUI</button>
-                    <div id="love-pop-casal" class="dropdown">
-                        <span>Love Pop Casal R$180,00 à vista via Pix 61524444000110</span>
-                        <span>Love Pop Casal com 01 adereço R$220,00 à vista via Pix 61524444000110</span>
-                        <span>Love Pop Casal com 02 adereços R$260,00 à vista via Pix 61524444000110</span>
-                        <span>Love Pop Casal com 03 adereços R$300,00 à vista via Pix 61524444000110</span>
-                        <a href="https://mpago.la/33Yozgx" target="_blank">Love Pop Casal em até 12X com juros</a>
-                        <a href="https://mpago.la/2s79L8v" target="_blank">Love Pop Casal com 01 adereço em até 12X com juros</a>
-                        <a href="https://mpago.la/2t6JB67" target="_blank">Love Pop Casal com 02 adereços em até 12X com juros</a>
-                        <a href="https://mpago.la/1DYUB6U" target="_blank">Love Pop Casal com 03 adereços em até 12X com juros</a>
-                    </div>
+    <section id="pagina3" class="section">
+        <h1>Linha POP!</h1>
+        <div class="pop-container">
+            <div class="pop-item">
+                <img src="https://i.imgur.com/0FkMi7c.png" alt="Pet Pop">
+                <h2>Pet Pop</h2>
+                <p>Tenha o seu melhor amigo sempre por perto</p>
+                <button class="button" onclick="toggleDropdown('pet-pop')">COMPRE AQUI</button>
+                <div id="pet-pop" class="dropdown">
+                    <span>Pet Pop R$100,00 à vista via Pix 61524444000110</span>
+                    <a href="https://mpago.la/2gKdo1C" target="_blank">Pet Pop em até 12X com juros</a>
                 </div>
             </div>
-        </section>
-
-        <section id="pagina4" class="section">
-            <h1>Mil e uma possibilidades</h1>
-            <div class="possibilities-grid">
-                <div class="possibility-item">
-                    <img src="https://i.imgur.com/BbfUuwt.png" alt="Geek">
-                    <div>
-                        <h2>Geek</h2>
-                        <p>Do seu mundo favorito direto pra sua estante.</p>
-                    </div>
-                </div>
-                <div class="possibility-item">
-                    <img src="https://i.imgur.com/Xt6HmBs.png" alt="Divulga +">
-                    <div>
-                        <h2>Divulga +</h2>
-                        <p>Itens personalizados que ajudam sua marca ir mais longe.</p>
-                    </div>
-                </div>
-                <div class="possibility-item">
-                    <img src="https://i.imgur.com/kcArYWz.png" alt="Arquitetura">
-                    <div>
-                        <h2>Arquitetura</h2>
-                        <p>Maquetes 3D físicas para encantar seus clientes.</p>
-                    </div>
-                </div>
-                <div class="possibility-item">
-                    <img src="https://i.imgur.com/sksKGxz.png" alt="Utilitários">
-                    <div>
-                        <h2>Utilitários</h2>
-                        <p>Soluções práticas e inteligentes para facilitar o seu dia-a-dia.</p>
-                    </div>
-                </div>
-                <div class="possibility-item">
-                    <img src="https://i.imgur.com/ejo8fSX.png" alt="Protótipos">
-                    <div>
-                        <h2>Protótipos</h2>
-                        <p>Tem uma ideia e gostaria de tirá-la do papel? Manda pra gente!</p>
-                    </div>
+            <div class="pop-item">
+                <img src="https://i.imgur.com/xPrCYhX.png" alt="Love Pop Individual">
+                <h2>Love Pop (Individual)</h2>
+                <p>Uma miniatura, infinitas lembranças</p>
+                <button class="button" onclick="toggleDropdown('love-pop-individual')">COMPRE AQUI</button>
+                <div id="love-pop-individual" class="dropdown">
+                    <span>Love Pop Individual R$120,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Individual com 01 adereço R$160,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Individual com 02 adereços R$200,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Individual com 03 adereços R$240,00 à vista via Pix 61524444000110</span>
+                    <a href="https://mpago.la/1KeWCHH" target="_blank">Love Pop Individual em até 12X com juros</a>
+                    <a href="https://mpago.la/2Jn9gPr" target="_blank">Love Pop Individual com 01 adereço em até 12X com juros</a>
+                    <a href="https://mpago.la/2SE87PE" target="_blank">Love Pop Individual com 02 adereços em até 12X com juros</a>
+                    <a href="https://mpago.la/1v727Tx" target="_blank">Love Pop Individual com 03 adereços em até 12X com juros</a>
                 </div>
             </div>
-        </section>
-        
-        <section id="pagina5" class="section">
-            <div class="testimonials-wrapper">
-                <div class="left-testimonial">
-                    <img src="https://i.imgur.com/8WaYOjp.png" alt="Comentário 1">
-                </div>
-                <div class="right-testimonials">
-                    <img src="https://i.imgur.com/1hYpMyZ.png" alt="Comentário 2">
-                    <img src="https://i.imgur.com/Qg1HkyJ.png" alt="Comentário 3">
-                </div>
-            </div>
-        </section>
-
-        <section id="pagina6" class="section">
-            <div class="content-wrapper">
-                <div class="image-content">
-                    <img src="https://i.imgur.com/EaQ6pM5.png" alt="Cachorro Filô">
-                </div>
-                <div class="text-content">
-                    <img src="https://i.imgur.com/HsJFZnR.png" alt="Logo Filô Contato" class="contact-logo">
-                    <div id="contact-details" class="contact-info">
-                        <h1>Entre em contato</h1>
-                        <h2>Instagram</h2>
-                        <p><a href="http://www.instagram.com/_filo3d" target="_blank">www.instagram.com/_filo3d</a></p>
-                        <h2>E-mail</h2>
-                        <p><a href="mailto:filo3d.contato@gmail.com">filo3d.contato@gmail.com</a></p>
-                        <h2>WhatsApp</h2>
-                        <p><a href="https://wa.me/5524981160108" target="_blank">+55 24 98116-0108</a></p>
-                        <p><a href="https://wa.me/5524999216805" target="_blank">+55 24 99921-6805</a></p>
-                    </div>
+            <div class="pop-item">
+                <img src="https://i.imgur.com/iCZNdOt.png" alt="Love Pop Casal">
+                <h2>Love Pop (Casal)</h2>
+                <p>Surpreenda quem você ama</p>
+                <button class="button" onclick="toggleDropdown('love-pop-casal')">COMPRE AQUI</button>
+                <div id="love-pop-casal" class="dropdown">
+                    <span>Love Pop Casal R$180,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Casal com 01 adereço R$220,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Casal com 02 adereços R$260,00 à vista via Pix 61524444000110</span>
+                    <span>Love Pop Casal com 03 adereços R$300,00 à vista via Pix 61524444000110</span>
+                    <a href="https://mpago.la/33Yozgx" target="_blank">Love Pop Casal em até 12X com juros</a>
+                    <a href="https://mpago.la/2s79L8v" target="_blank">Love Pop Casal com 01 adereço em até 12X com juros</a>
+                    <a href="https://mpago.la/2t6JB67" target="_blank">Love Pop Casal com 02 adereços em até 12X com juros</a>
+                    <a href="https://mpago.la/1DYUB6U" target="_blank">Love Pop Casal com 03 adereços em até 12X com juros</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </div><!-- Fim do .site-wrapper -->
+    <section id="pagina4" class="section">
+        <h1>Mil e uma possibilidades</h1>
+        <div class="possibilities-grid">
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/BbfUuwt.png" alt="Geek">
+                <div>
+                    <h2>Geek</h2>
+                    <p>Do seu mundo favorito direto pra sua estante.</p>
+                </div>
+            </div>
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/Xt6HmBs.png" alt="Divulga +">
+                <div>
+                    <h2>Divulga +</h2>
+                    <p>Itens personalizados que ajudam sua marca ir mais longe.</p>
+                </div>
+            </div>
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/kcArYWz.png" alt="Arquitetura">
+                <div>
+                    <h2>Arquitetura</h2>
+                    <p>Maquetes 3D físicas para encantar seus clientes.</p>
+                </div>
+            </div>
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/sksKGxz.png" alt="Utilitários">
+                <div>
+                    <h2>Utilitários</h2>
+                    <p>Soluções práticas e inteligentes para facilitar o seu dia-a-dia.</p>
+                </div>
+            </div>
+            <div class="possibility-item">
+                <img src="https://i.imgur.com/ejo8fSX.png" alt="Protótipos">
+                <div>
+                    <h2>Protótipos</h2>
+                    <p>Tem uma ideia e gostaria de tirá-la do papel? Manda pra gente!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pagina5" class="section">
+        <div class="testimonials-wrapper">
+            <div class="left-testimonial">
+                <img src="https://i.imgur.com/8WaYOjp.png" alt="Comentário 1">
+            </div>
+            <div class="right-testimonials">
+                <img src="https://i.imgur.com/1hYpMyZ.png" alt="Comentário 2">
+                <img src="https://i.imgur.com/Qg1HkyJ.png" alt="Comentário 3">
+            </div>
+        </div>
+    </section>
+
+    <section id="pagina6" class="section">
+        <div class="content-wrapper">
+            <div class="image-content">
+                <img src="https://i.imgur.com/EaQ6pM5.png" alt="Cachorro Filô">
+            </div>
+            <div class="text-content">
+                <img src="https://i.imgur.com/HsJFZnR.png" alt="Logo Filô Contato" class="contact-logo">
+                <div id="contact-details" class="contact-info">
+                    <h1>Entre em contato</h1>
+                    <h2>Instagram</h2>
+                    <p><a href="http://www.instagram.com/_filo3d" target="_blank">www.instagram.com/_filo3d</a></p>
+                    <h2>E-mail</h2>
+                    <p><a href="mailto:filo3d.contato@gmail.com">filo3d.contato@gmail.com</a></p>
+                    <h2>WhatsApp</h2>
+                    <p><a href="https://wa.me/5524981160108" target="_blank">+55 24 98116-0108</a></p>
+                    <p><a href="https://wa.me/5524999216805" target="_blank">+55 24 99921-6805</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
         function scrollToContact() {
