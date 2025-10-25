@@ -15,6 +15,7 @@
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background-color: #e5eded;
+            overflow-x: hidden; /* <-- CORREÇÃO DEFINITIVA PARA A BORDA LATERAL */
         }
 
         .section {
@@ -25,8 +26,8 @@
             justify-content: center;
             min-height: 100vh;
             box-sizing: border-box;
-            text-align: center;
             width: 100%;
+            text-align: center;
         }
 
         #pagina1 { background-color: rgb(229, 237, 237); }
@@ -236,7 +237,6 @@
                  margin-left: 0;
             }
 
-            /* Correção para o fundo da página 5 no celular */
             #pagina5 {
                 background-attachment: scroll;
             }
